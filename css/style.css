@@ -19,7 +19,7 @@ body, * {
   justify-content: space-around;
   background-color: rgb(209,207,208);
 }
-.calculator .result {
+.calculator .calc-display {
   height: 100px;
   padding: 20px;
   box-sizing: border-box;
@@ -126,7 +126,7 @@ button#result-btn:hover .fa-equals{
   font-size: 10px;
 }
 .calc-operation {
-  width: 100px;
+  width: 20%;
   height: 600px;
   padding: 5px;
   box-sizing: border-box;
