@@ -1,8 +1,7 @@
 const input = document.querySelector(".calc-display");
 const locat = document.querySelector(".calc-operation");
-var express;
-var storageArray = [];
-storageArray = JSON.parse(localStorage.getItem("equation"));
+let express;
+let storageArray =  [JSON.parse(localStorage.getItem("equation"))];
 
 
 //отображение в дисплее
@@ -16,7 +15,7 @@ function insertInDisplay(num) {
 }
 
 //локальное хранилище
-function equationRes() {
+function storageResults() {
   storageArray.push(`${express} = ${input.textContent}`);
   if (storageArray.length > 100) {
     storageArray.shift();
@@ -31,9 +30,10 @@ document.addEventListener("keydown", function (event) {
   }
   else if (input.textContent && (event.key).match(/Enter/)) {
     let result = eval(input.textContent);
+    //
     input.textContent = result;
     locat.textContent += `${express} = ${result} \n`;
-    equationRes();
+    storageResults();
   }
   else if ((event.key).match(/Delete/)) {
     input.textContent = "";
@@ -47,21 +47,21 @@ document.querySelector("#result-btn").addEventListener("click", function (event)
     let arr = input.textContent.split('^');
     input.textContent = Math.pow(arr[0], arr[1]);
     locat.textContent += `${express} = ${Math.pow(arr[0], arr[1])} \n`;
-    equationRes();
+    storageResults();
   }
   //квадратный корень
   else if (input.textContent.includes('\u221A')) {
     let x = input.textContent.replace(/\u221A/, "");
     input.textContent = Math.sqrt(x);
     locat.textContent += `${express} = ${Math.sqrt(x)} \n`;
-    equationRes();
+    storageResults();
   }
   //основные операции
   else {
     let result = eval(input.textContent);
     input.textContent = result;
     locat.textContent += `${express} = ${result} \n`;
-    equationRes();
+    storageResults();
   }
 })
 
@@ -74,12 +74,12 @@ document.querySelector("#percentage").addEventListener("click", function () {
       let result = x * (y / 100);
       input.textContent = result;
       locat.textContent += `${express}% = ${result} \n`;
-      equationRes();
+      storageResults();
     } else {
       let result = x / 100;
       input.textContent = result;
       locat.textContent += `${express}% = ${result} \n`;
-      equationRes();
+      storageResults();
     }
 })
 
