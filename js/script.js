@@ -2,23 +2,46 @@ const IN_DISPLAY = document.querySelector(".calc-display");
 const IN_OPERATION_LIST = document.querySelector(".calc-operation");
 let calculationNote;
 let result;
-let inStorageArray = [JSON.parse(localStorage.getItem("equation"))];
+let inStorageArray = JSON.parse(localStorage.getItem("equation")) || [];
 
-//отображение в дисплее
+// отображение в дисплее
 function insertInDisplay(num) {
+  //отображение знака корня
   if (num === '№') {
     if (!IN_DISPLAY.textContent.match('\u221A')) {
-      calculationNote = IN_DISPLAY.textContent += num.replace(/№/g, '\u221A');
+      IN_DISPLAY.textContent += num.replace(/№/g, '\u221A');
     }
   }
+  // ограничение введения более одного символа подряд
   else if (isNaN(num)) {
-    if (num !== IN_DISPLAY.textContent[IN_DISPLAY.textContent.length-1] && IN_DISPLAY.textContent !== '') {
+    if (num == '.' && IN_DISPLAY.textContent !== '' && !IN_DISPLAY.textContent.slice(-1).match(/[\*\-\+\/]/)) {
+        let calc = IN_DISPLAY.textContent.replace(/[\*\-\+\/]/g, ' ');
+        let calcArray = calc.split(' ');
+
+        for (var i = 0; i < calcArray.length; i++) {
+          if (calcArray[i].includes('.')) {
+            IN_DISPLAY.textContent += '';
+          } else {
+            IN_DISPLAY.textContent += num;
+          }
+      }
+    }
+    else if (num.match(/[\*\.\+\/]/) && !IN_DISPLAY.textContent.match(/[0-9]/)) {
+      IN_DISPLAY.textContent += '';
+    }
+    else if (IN_DISPLAY.textContent !== '' && isNaN(IN_DISPLAY.textContent.slice(-1))) {
+      let str = IN_DISPLAY.textContent.slice(0, -1);
+      IN_DISPLAY.textContent = str + num;
+    }
+    else  {
       IN_DISPLAY.textContent += num;
     }
   }
+  //замена ноля
   else if (IN_DISPLAY.textContent == '0' && IN_DISPLAY.textContent !== '0.') {
-      calculationNote = IN_DISPLAY.textContent = num;
+      IN_DISPLAY.textContent = num;
   }
+  //замена результата
   else if (IN_DISPLAY.textContent == result && !isNaN(num)) {
     IN_DISPLAY.textContent = num;
   }
@@ -26,6 +49,20 @@ function insertInDisplay(num) {
     calculationNote = IN_DISPLAY.textContent += num;
   }
 }
+
+//набор клавиатурой
+document.addEventListener("keydown", function (event) {
+  if ((event.key).match(/[0-9\*\-\+\.\/]/)) {
+    insertInDisplay(event.key);
+  }
+  else if (IN_DISPLAY.textContent && (event.key).match(/Enter/)) {
+    result = eval(IN_DISPLAY.textContent);
+    outputResults();
+  }
+  else if ((event.key).match(/Delete/)) {
+    IN_DISPLAY.textContent = "";
+  }
+})
 
 //локальное хранилище
 function storageResults() {
@@ -38,25 +75,17 @@ function storageResults() {
 
 //добавление результатов ввода в дисплей и в список операций
 function outputResults() {
-  IN_DISPLAY.textContent = result;
-  IN_OPERATION_LIST.innerHTML += `${calculationNote} = ${result}` + `<br/>`;
+  if (result % 1 !== 0) {
+    IN_DISPLAY.textContent = result.toFixed(4);
+    IN_OPERATION_LIST.innerHTML += `${calculationNote} = ${result.toFixed(4)}` + `<br/>`;
+  }
+  else {
+    IN_DISPLAY.textContent = result;
+    IN_OPERATION_LIST.innerHTML += `${calculationNote} = ${result}` + `<br/>`;
+  }
   storageResults();
 }
 
-
-//набор клавиатурой
-document.addEventListener("keydown", function (event) {
-  if ((event.key).match(/[0-9\*\-\+\/]/)) {
-    calculationNote = IN_DISPLAY.textContent += event.key;
-  }
-  else if (IN_DISPLAY.textContent && (event.key).match(/Enter/)) {
-    result = eval(IN_DISPLAY.textContent);
-    outputResults();
-  }
-  else if ((event.key).match(/Delete/)) {
-    IN_DISPLAY.textContent = "";
-  }
-})
 
 //математические операции при нажатии на кнопку "="
 document.querySelector("#result-btn").addEventListener("click", function (event) {
