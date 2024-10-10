@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calculator</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
+  </head>
+  <body>
+
+    <div class="container">
+
+      <div class="calculator">
+
+        <div class="calc-top">
+            <h1>Calculator</h1>
+
+          <div class="calc-display"><label></label></div>
+        </div>
+
+        <div class="calculation">
+
+          <div class="calc-numbers">
+            <div class="numbers-flex-group">
+              <button class="btn btn-num" value="7" onclick="insertInDisplay(7)"><p>7</p></button>
+              <button class="btn btn-num" value="8" onclick="insertInDisplay(8)"><p>8</p></button>
+              <button class="btn btn-num" value="9" onclick="insertInDisplay(9)"><p>9</p></button>
+            </div>
+            <div class="numbers-flex-group">
+              <button class="btn btn-num" value="4" onclick="insertInDisplay(4)"><p>4</p></button>
+              <button class="btn btn-num" value="5" onclick="insertInDisplay(5)"><p>5</p></button>
+              <button class="btn btn-num" value="6" onclick="insertInDisplay(6)"><p>6</p></button>
+            </div>
+            <div class="numbers-flex-group">
+              <button class="btn btn-num" value="1" onclick="insertInDisplay(1)"><p>1</p></button>
+              <button class="btn btn-num" value="2" onclick="insertInDisplay(2)"><p>2</p></button>
+              <button class="btn btn-num" value="3" onclick="insertInDisplay(3)"><p>3</p></button>
+            </div>
+            <div class="numbers-flex-group">
+              <button class="res-delete" onclick="clean()"><p>C</p></button>
+              <button class="btn btn-num" value="0" onclick="insertInDisplay(0)"><p>0</p></button>
+              <button class="btn" onclick="insertInDisplay('.')"><i class="fas fa-circle"></i></button>
+            </div>
+          </div>
+
+          <div class="basic-operation">
+            <button class="btn plus" onclick="insertInDisplay('+')"><i class="fas fa-plus"></i></button>
+            <button class="btn" onclick="insertInDisplay('-')"><i class="fas fa-minus"></i></button>
+            <button class="btn" onclick="insertInDisplay('*')"><i class="fas fa-times"></i></button>
+            <button class="btn" onclick="insertInDisplay('/')"><i class="fas fa-divide"></i></button>
+          </div>
+
+          <div class="add-operation">
+            <button class="btn"  onclick="insertInDisplay('^')"><i class="fas fa-superscript"></i></button>
+            <button class="btn" id="percentage"><i class="fas fa-percentage"></i></button>
+            <button class="btn square-root-alt" onclick="insertInDisplay('№')"><i class="fas fa-square-root-alt"></i></button>
+            <button id="result-btn"><i class="fas fa-equals"></i></button>
+          </div>
+
+        </div>
+
+      </div>
+      <div class="calc-operation"></div>
+
+    </div>
+
+
+
+  <script type="text/javascript" src="js/script.js">
+
+  </script>
+  </body>
+</html>
