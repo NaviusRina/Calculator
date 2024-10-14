@@ -1,3 +1,5 @@
+import './style.css';
+
 const IN_DISPLAY = document.querySelector(".calc-display");
 const IN_OPERATION_LIST = document.querySelector(".calc-operation");
 let calculationNote;
