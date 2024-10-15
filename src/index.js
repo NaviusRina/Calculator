@@ -1,4 +1,4 @@
-import './style.css';
+import './style.scss';
 
 const IN_DISPLAY = document.querySelector(".calc-display");
 const IN_OPERATION_LIST = document.querySelector(".calc-operation");
