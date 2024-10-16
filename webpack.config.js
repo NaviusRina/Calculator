@@ -25,6 +25,11 @@ module.exports = {
           "sass-loader",
         ], // Загрузчики, используемые для обработки CSS-файлов
       },
+      {
+          test: /\.js$/,
+          exclude: /node_modules/,
+          use: ['babel-loader'],
+      },
     ],
   },
 
