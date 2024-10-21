@@ -134,6 +134,6 @@ if (localStorage.getItem("equation")) {
 }
 
 //очистка дисплея
-function cleanDisplay() {
-  IN_DISPLAY.textContent = "";
-}
+document.querySelector("#num-clean").addEventListener("click", function () {
+    IN_DISPLAY.textContent = "";
+})
