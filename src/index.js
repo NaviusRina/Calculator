@@ -1,7 +1,7 @@
 import './style.scss';
 
-const IN_DISPLAY = document.querySelector(".calc-display");
-const IN_OPERATION_LIST = document.querySelector(".calc-operation");
+const IN_DISPLAY = document.querySelector(".calculator__display");
+const IN_OPERATION_LIST = document.querySelector(".calculator__operation");
 let calculationNote;
 let result;
 let inStorageArray = JSON.parse(localStorage.getItem("equation")) || [];
@@ -90,7 +90,7 @@ function outputResults() {
 
 
 //математические операции при нажатии на кнопку "="
-document.querySelector("#result-btn").addEventListener("click", function (event) {
+document.querySelector("#btn-result").addEventListener("click", function (event) {
   //возведение в степень
   if (IN_DISPLAY.textContent.includes('^')) {
     let elem = IN_DISPLAY.textContent.split('^');
@@ -113,7 +113,7 @@ document.querySelector("#result-btn").addEventListener("click", function (event)
 })
 
 //вычисление процентов
-document.querySelector("#percentage").addEventListener("click", function () {
+document.querySelector("#btn-percentage").addEventListener("click", function () {
     let elem = IN_DISPLAY.textContent.split(/\D/g);
     let x = elem[0];
     let y = elem[1];
@@ -134,6 +134,6 @@ if (localStorage.getItem("equation")) {
 }
 
 //очистка дисплея
-document.querySelector("#num-clean").addEventListener("click", function () {
+document.querySelector("#btn-clean").addEventListener("click", function () {
     IN_DISPLAY.textContent = "";
 })
