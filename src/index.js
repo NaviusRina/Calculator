@@ -7,16 +7,16 @@ let result;
 let inStorageArray = JSON.parse(localStorage.getItem("equation")) || [];
 
 // отображение в дисплее
-function insertInDisplay(num) {
+document.querySelector(".btn").addEventListener("click", function (event) {
   //отображение знака корня
-  if (num === '№') {
+  if (btnText === '№') {
     if (!IN_DISPLAY.textContent.match('\u221A')) {
-      IN_DISPLAY.textContent += num.replace(/№/g, '\u221A');
+      IN_DISPLAY.textContent += btnText.replace(/№/g, '\u221A');
     }
   }
   // ограничение введения более одного символа подряд
-  else if (isNaN(num)) {
-    if (num == '.' && IN_DISPLAY.textContent !== '' && !IN_DISPLAY.textContent.slice(-1).match(/[\*\-\+\/]/)) {
+  else if (isNaN(btnText)) {
+    if (btnText == '.' && IN_DISPLAY.textContent !== '' && !IN_DISPLAY.textContent.slice(-1).match(/[\*\-\+\/]/)) {
         let calc = IN_DISPLAY.textContent.replace(/[\*\-\+\/]/g, ' ');
         let calcArray = calc.split(' ');
 
@@ -24,31 +24,31 @@ function insertInDisplay(num) {
           if (calcArray[i].includes('.')) {
             IN_DISPLAY.textContent += '';
           } else {
-            IN_DISPLAY.textContent += num;
+            IN_DISPLAY.textContent += btnText;
           }
       }
     }
-    else if (num.match(/[\*\.\+\/]/) && !IN_DISPLAY.textContent.match(/[0-9]/)) {
+    else if (btnText.match(/[\*\.\+\/]/) && !IN_DISPLAY.textContent.match(/[0-9]/)) {
       IN_DISPLAY.textContent += '';
     }
     else if (IN_DISPLAY.textContent !== '' && isNaN(IN_DISPLAY.textContent.slice(-1))) {
       let str = IN_DISPLAY.textContent.slice(0, -1);
-      IN_DISPLAY.textContent = str + num;
+      IN_DISPLAY.textContent = str + btnText;
     }
     else  {
-      IN_DISPLAY.textContent += num;
+      IN_DISPLAY.textContent += btnText;
     }
   }
   //замена ноля
   else if (IN_DISPLAY.textContent == '0' && IN_DISPLAY.textContent !== '0.') {
-      IN_DISPLAY.textContent = num;
+      IN_DISPLAY.textContent = btnText;
   }
   //замена результата
-  else if (IN_DISPLAY.textContent == result && !isNaN(num)) {
-    IN_DISPLAY.textContent = num;
+  else if (IN_DISPLAY.textContent == result && !isNaN(btnText)) {
+    IN_DISPLAY.textContent = btnText;
   }
   else {
-    calculationNote = IN_DISPLAY.textContent += num;
+    calculationNote = IN_DISPLAY.textContent += btnText;
   }
 }
 
