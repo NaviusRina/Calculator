@@ -23,7 +23,7 @@ body, * {
   justify-content: space-around;
   background-color: rgb(209, 207, 208);
 }
-.calculator .calc-display {
+.calculator .calculator__display {
   height: 100px;
   padding: 20px;
   box-sizing: border-box;
@@ -31,27 +31,27 @@ body, * {
   color: rgb(110, 102, 99);
   font-size: 20px;
 }
-.calculator .calculation {
+.calculator .calculator__calculation {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
 }
-.calculator .calc-top {
+.calculator .calculator__top {
   background-color: rgb(60, 55, 61);
   padding: 10px;
 }
-.calculator button {
+.calculator .btn {
   width: 70px;
   height: 50px;
   border-radius: 4px;
   border: 2px ridge rgb(110, 102, 99);
 }
-.calculator button.btn {
+.calculator .btn.btn--gray {
   position: relative;
   background: radial-gradient(7em 3em at top, rgb(110, 102, 99) 80%, rgb(58, 56, 59) 80%);
   z-index: 10;
 }
-.calculator button.btn::before {
+.calculator .btn.btn--gray::before {
   content: "";
   position: absolute;
   opacity: 0;
@@ -63,11 +63,11 @@ body, * {
   transition-duration: 0.2s;
   z-index: -10;
 }
-.calculator button.btn:hover::before {
+.calculator .btn.btn--gray:hover::before {
   opacity: 1;
   transition-duration: 0.2s;
 }
-.calculator button.res-delete {
+.calculator .btn.btn--blue {
   width: 70px;
   height: 50px;
   background: rgb(118, 135, 165);
@@ -75,46 +75,38 @@ body, * {
   color: #3a383b;
 }
 
-button#result-btn {
-  width: 70px;
-  height: 50px;
-  background: rgb(118, 135, 165);
-  transition: 0.2s;
-  color: #3a383b;
-}
-
-.calculator button.res-delete:hover, button#result-btn:hover {
+.calculator button.res-delete:hover, button#btn-result:hover {
   background: rgb(56, 63, 91);
   transition: 0.2s;
 }
 
-.calculator button.res-delete p, button#result-btn .fa-equals {
+.calculator button.res-delete p, button#btn-result .fa-equals {
   color: rgb(58, 56, 59);
   transition: 0.2s;
 }
 
-.calculator button.res-delete:hover p, button#result-btn:hover .fa-equals {
+.calculator button.res-delete:hover p, button#btn-result:hover .fa-equals {
   color: rgb(184, 174, 164);
   transition: 0.2s;
 }
 
-.calculation {
+.calculator__calculation {
   height: 60%;
 }
-.calculation .calc-numbers {
+.calculator__calculation .calculator__numbers {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   width: 300px;
 }
 
-.numbers-flex-group {
+.numbers--flex--group {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
 }
 
-.calculation .basic-operation, .calculation .add-operation {
+.calculator__calculation .calculator__basic-operation, .calculator__calculation .calculator__add-operation {
   align-content: center;
   display: flex;
   flex-direction: column;
@@ -142,7 +134,7 @@ button#result-btn {
   font-size: 10px;
 }
 
-.calc-operation {
+.calculator__operation {
   width: 20%;
   height: 600px;
   padding: 5px;
@@ -157,7 +149,7 @@ button#result-btn {
   .container {
     flex-direction: column;
   }
-  .calc-operation {
+  .calculator__operation {
     width: inherit;
     height: 100px;
   }
@@ -174,7 +166,7 @@ button#result-btn {
     width: 55px;
     height: 40px;
   }
-  button#result-btn {
+  button#btn-result {
     width: 55px;
     height: 40px;
   }
@@ -194,7 +186,7 @@ button#result-btn {
     height: 70px;
     padding: 5px;
   }
-  .calculator .calc-top {
+  .calculator .calculator__top {
     padding: 5px;
   }
   .calculator button {
@@ -208,17 +200,17 @@ button#result-btn {
     width: 50px;
     height: 40px;
   }
-  button.result-btn {
+  button.btn-result {
     width: 50px;
     height: 40px;
   }
   .calculator h1, i, p {
     font-size: 28px;
   }
-  .calculator .num-button .fa-circle {
+  .calculator .btn-button .fa-circle {
     font-size: 8px;
   }
-  .calc-operation {
+  .calculator__operation {
     width: inherit;
     height: 100px;
   }

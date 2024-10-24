@@ -4,19 +4,20 @@ const IN_DISPLAY = document.querySelector(".calculator__display");
 const IN_OPERATION_LIST = document.querySelector(".calculator__operation");
 let calculationNote;
 let result;
+// let btnText = document.getElementsByClassName("btn").value;
 let inStorageArray = JSON.parse(localStorage.getItem("equation")) || [];
 
 // отображение в дисплее
-document.querySelector(".btn").addEventListener("click", function (event) {
+function insertInDisplay(value) {
   //отображение знака корня
-  if (btnText === '№') {
+  if (value === '№') {
     if (!IN_DISPLAY.textContent.match('\u221A')) {
-      IN_DISPLAY.textContent += btnText.replace(/№/g, '\u221A');
+      IN_DISPLAY.textContent += value.replace(/№/g, '\u221A');
     }
   }
   // ограничение введения более одного символа подряд
-  else if (isNaN(btnText)) {
-    if (btnText == '.' && IN_DISPLAY.textContent !== '' && !IN_DISPLAY.textContent.slice(-1).match(/[\*\-\+\/]/)) {
+  else if (isNaN(value)) {
+    if (value == '.' && IN_DISPLAY.textContent !== '' && !IN_DISPLAY.textContent.slice(-1).match(/[\*\-\+\/]/)) {
         let calc = IN_DISPLAY.textContent.replace(/[\*\-\+\/]/g, ' ');
         let calcArray = calc.split(' ');
 
@@ -24,33 +25,37 @@ document.querySelector(".btn").addEventListener("click", function (event) {
           if (calcArray[i].includes('.')) {
             IN_DISPLAY.textContent += '';
           } else {
-            IN_DISPLAY.textContent += btnText;
+            IN_DISPLAY.textContent += value;
           }
       }
     }
-    else if (btnText.match(/[\*\.\+\/]/) && !IN_DISPLAY.textContent.match(/[0-9]/)) {
+    else if (value.match(/[\*\.\+\/]/) && !IN_DISPLAY.textContent.match(/[0-9]/)) {
       IN_DISPLAY.textContent += '';
     }
     else if (IN_DISPLAY.textContent !== '' && isNaN(IN_DISPLAY.textContent.slice(-1))) {
       let str = IN_DISPLAY.textContent.slice(0, -1);
-      IN_DISPLAY.textContent = str + btnText;
+      IN_DISPLAY.textContent = str + value;
     }
     else  {
-      IN_DISPLAY.textContent += btnText;
+      IN_DISPLAY.textContent += value;
     }
   }
   //замена ноля
   else if (IN_DISPLAY.textContent == '0' && IN_DISPLAY.textContent !== '0.') {
-      IN_DISPLAY.textContent = btnText;
+      IN_DISPLAY.textContent = value;
   }
   //замена результата
-  else if (IN_DISPLAY.textContent == result && !isNaN(btnText)) {
-    IN_DISPLAY.textContent = btnText;
+  else if (IN_DISPLAY.textContent == result && !isNaN(value)) {
+    IN_DISPLAY.textContent = value;
   }
   else {
-    calculationNote = IN_DISPLAY.textContent += btnText;
+    calculationNote = IN_DISPLAY.textContent += value;
   }
 }
+
+// document.querySelector(".btn").addEventListener("click", insertInDisplay(btnText))
+document.querySelector("#btn-seven").addEventListener("click", insertInDisplay(7))
+document.querySelector("#btn-eight").addEventListener("click", insertInDisplay(8))
 
 //набор клавиатурой
 document.addEventListener("keydown", function (event) {
