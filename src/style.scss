@@ -81,14 +81,6 @@ body, * {
   }
 }
 
-// button#result-btn {
-//   width: 70px;
-//   height: 50px;
-//   background: rgb(118, 135, 165);
-//   transition: 0.2s;
-//   color: #3a383b;
-// }
-
 .calculator button.res-delete:hover, button#btn-result:hover {
   background: rgb(56, 63, 91);
   transition: 0.2s;
@@ -163,6 +155,14 @@ body, * {
   word-wrap: break-word;
   color: rgb(110, 102, 99);
   font-size: 20px;
+  background-color: rgb(209, 207, 208);
+
+    &::-webkit-scrollbar {
+      background-color: rgb(209, 207, 208);
+  }
+    &::-webkit-scrollbar-thumb {
+      background-color: rgb(110, 102, 99);
+    }
 }
 
 @media only screen and (max-width: 768px) {

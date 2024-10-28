@@ -58,7 +58,7 @@ document.querySelector("button").addEventListener("click", function () {
   let btnText = document.getElementsByClassName("btn").value;
   insertInDisplay(btnText);
 })
-// ????
+// вариант 1 - класть все кнопки каждую в свою переменную - отстой
 
 //набор клавиатурой
 document.addEventListener("keydown", function (event) {

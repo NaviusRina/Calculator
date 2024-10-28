@@ -143,6 +143,13 @@ body, * {
   word-wrap: break-word;
   color: rgb(110, 102, 99);
   font-size: 20px;
+  background-color: rgb(209, 207, 208);
+}
+.calculator__operation::-webkit-scrollbar {
+  background-color: rgb(209, 207, 208);
+}
+.calculator__operation::-webkit-scrollbar-thumb {
+  background-color: rgb(110, 102, 99);
 }
 
 @media only screen and (max-width: 768px) {
