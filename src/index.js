@@ -7,6 +7,8 @@ let result;
 // let btnText = document.getElementsByClassName("btn").value;
 let inStorageArray = JSON.parse(localStorage.getItem("equation")) || [];
 
+
+
 // отображение в дисплее
 function insertInDisplay(num) {
   //отображение знака корня
@@ -53,11 +55,12 @@ function insertInDisplay(num) {
   }
 }
 
-// document.querySelector(".btn").addEventListener("click", insertInDisplay(btnText))
-document.querySelector("button").addEventListener("click", function () {
-  let btnText = document.getElementsByClassName("btn").value;
+
+btnText.addEventListener("click",  function (event) {
+  let btn = document.querySelector("button");
+  let btnText = btn.value;
   insertInDisplay(btnText);
-})
+}
 // вариант 1 - класть все кнопки каждую в свою переменную - отстой
 
 //набор клавиатурой
