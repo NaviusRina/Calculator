@@ -4,8 +4,18 @@ const IN_DISPLAY = document.querySelector(".calculator__display");
 const IN_OPERATION_LIST = document.querySelector(".calculator__operation");
 let calculationNote;
 let result;
-// let btnText = document.getElementsByClassName("btn").value;
 let inStorageArray = JSON.parse(localStorage.getItem("equation")) || [];
+let btnText;
+// let btn1
+// let btn2
+// let btn3
+// let btn4
+// let btn5
+// let btn6
+// let btn7
+// let btn8
+// let btn9
+// let btn0
 
 
 
@@ -55,12 +65,14 @@ function insertInDisplay(num) {
   }
 }
 
-
-btnText.addEventListener("click",  function (event) {
-  let btn = document.querySelector("button");
-  let btnText = btn.value;
+btnText = document.querySelector("button").value;
+document.querySelector("button").addEventListener('click', function (event) {
   insertInDisplay(btnText);
-}
+})
+// document.querySelector("button").addEventListener("click", function (event) {
+//   btnText = document.querySelector("button").value;
+//   insertInDisplay(btnText);
+// })
 // вариант 1 - класть все кнопки каждую в свою переменную - отстой
 
 //набор клавиатурой
