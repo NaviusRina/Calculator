@@ -6,16 +6,6 @@ let calculationNote;
 let result;
 let inStorageArray = JSON.parse(localStorage.getItem("equation")) || [];
 let btnText;
-// let btn1
-// let btn2
-// let btn3
-// let btn4
-// let btn5
-// let btn6
-// let btn7
-// let btn8
-// let btn9
-// let btn0
 
 
 
@@ -65,15 +55,21 @@ function insertInDisplay(num) {
   }
 }
 
-btnText = document.querySelector("button").value;
-document.querySelector("button").addEventListener('click', function (event) {
-  insertInDisplay(btnText);
-})
-// document.querySelector("button").addEventListener("click", function (event) {
+function btnTextClick () {
+  btnText = document.querySelector("button").value;
+
+  Array.prototype.slice.call(btnText).forEach(el => {
+      el.addEventListener('click', e => {
+          insertInDisplay(btnText);
+      });
+  });
+}
+btnTextClick ();
+// document.querySelector("button").addEventListener('click', function (event) {
 //   btnText = document.querySelector("button").value;
 //   insertInDisplay(btnText);
 // })
-// вариант 1 - класть все кнопки каждую в свою переменную - отстой
+
 
 //набор клавиатурой
 document.addEventListener("keydown", function (event) {
