@@ -56,11 +56,12 @@ function insertInDisplay(num) {
 }
 
 function btnTextClick () {
-  btnText = document.querySelector("button").value;
+  btnText = document.querySelector("button");
 
   Array.prototype.slice.call(btnText).forEach(el => {
       el.addEventListener('click', e => {
-          insertInDisplay(btnText);
+        let btnValue = document.querySelector("button").value;
+          insertInDisplay(btnValue);
       });
   });
 }
