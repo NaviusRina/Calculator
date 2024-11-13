@@ -55,17 +55,20 @@ function insertInDisplay(num) {
   }
 }
 
-function btnTextClick () {
-  btnText = document.querySelector("button");
+// function btnTextClick () {
+  // btnText = document.querySelectorAll("button");
 
-  Array.prototype.slice.call(btnText).forEach(el => {
+  // Array.prototype.slice.call(btnText)
+  document.querySelectorAll("button").forEach(el => {
       el.addEventListener('click', e => {
         let btnValue = document.querySelector("button").value;
           insertInDisplay(btnValue);
       });
   });
-}
-btnTextClick ();
+// }
+// btnTextClick ();
+
+
 // document.querySelector("button").addEventListener('click', function (event) {
 //   btnText = document.querySelector("button").value;
 //   insertInDisplay(btnText);
