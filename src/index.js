@@ -56,12 +56,12 @@ function insertInDisplay(num) {
 }
 
 // function btnTextClick () {
-  // btnText = document.querySelectorAll("button");
-
-  // Array.prototype.slice.call(btnText)
-  document.querySelectorAll("button").forEach(el => {
+btnText = document.querySelectorAll(".btn");
+let btnValue;
+  Array.prototype.slice.call(btnText).forEach(el => {
       el.addEventListener('click', e => {
-        let btnValue = document.querySelector("button").value;
+        btnValue = document.querySelector(this.value);
+        // btnText.value;
           insertInDisplay(btnValue);
       });
   });
