@@ -1,3 +1,5 @@
+"use strict"
+
 import './style.scss';
 
 const IN_DISPLAY = document.querySelector(".calculator__display");
