@@ -65,6 +65,7 @@ let btnValue;
         btnValue = document.querySelector(this.value);
         // btnText.value;
           insertInDisplay(btnValue);
+          // https://learn.javascript.ru/while-for#metki-dlya-break-continue - посмотреть тут, вдруг поможет. Или просто добавить continue?
       });
   });
 // }
@@ -92,7 +93,7 @@ document.addEventListener("keydown", function (event) {
 })
 
 //локальное хранилище
-function storageResults() {
+function getStorageResults() {
   inStorageArray.push(`${calculationNote} = ${IN_DISPLAY.textContent}`);
   if (inStorageArray.length > 100) {
     inStorageArray.shift();
@@ -110,7 +111,7 @@ function outputResults() {
     IN_DISPLAY.textContent = result;
     IN_OPERATION_LIST.innerHTML += `${calculationNote} = ${result}` + `<br/>`;
   }
-  storageResults();
+  getStorageResults();
 }
 
 
@@ -121,14 +122,14 @@ document.querySelector("#btn-result").addEventListener("click", function (event)
     let elem = IN_DISPLAY.textContent.split('^');
     IN_DISPLAY.textContent = Math.pow(elem[0], elem[1]);
     IN_OPERATION_LIST.innerHTML += `${calculationNote} = ${Math.pow(elem[0], elem[1])}` + `<br/>`;
-    storageResults();
+    getStorageResults();
   }
   //квадратный корень
   else if (IN_DISPLAY.textContent.includes('\u221A')) {
     let elem = IN_DISPLAY.textContent.replace(/\u221A/, "");
     IN_DISPLAY.textContent = Math.sqrt(elem);
     IN_OPERATION_LIST.innerHTML += `${calculationNote} = ${Math.sqrt(elem)}` + `<br/>`;
-    storageResults();
+    getStorageResults();
   }
   //основные операции
   else {
