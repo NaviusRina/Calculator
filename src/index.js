@@ -7,7 +7,6 @@ const IN_OPERATION_LIST = document.querySelector(".calculator__operation");
 let calculationNote;
 let result;
 let inStorageArray = JSON.parse(localStorage.getItem("equation")) || [];
-let btnText;
 
 
 
@@ -57,41 +56,16 @@ function insertInDisplay(num) {
   }
 }
 
-// function btnTextClick () {
-btnText = document.querySelectorAll(".btn");
+//нажатие кнопок на калькуляторе
+let btnText = document.querySelectorAll(".btn");
 let btnValue;
-  Array.prototype.slice.call(btnText).forEach(el => {
-      el.addEventListener('click', e => {
-        btnValue = document.querySelector(this.value);
-        // btnText.value;
-          insertInDisplay(btnValue);
-          // Continue;
-          // https://learn.javascript.ru/while-for#metki-dlya-break-continue - посмотреть тут, вдруг поможет. Или просто добавить continue? Готво выше
-          // может есть смысл сначала создать функцию, присваивающую переменной значение кнопки, а потом вызывать кнопку? Сначала обрабатываются функции, а потом их вызов. У меня будто сначала идет вызов, а потом функция.Готово ниже
+
+  Array.from(btnText).forEach(el => {
+      el.addEventListener('click', function(e) {
+        btnValue = el.value;
+        insertInDisplay(btnValue);
       });
   });
-// }
-// btnTextClick ();
-
-//присвоить переменной значение кнопки
-let btnValue;
-function adValueToButton () {
-  btnValue = document.querySelectorAll(".btn");//тут будто нужен не класс, а переменная из следующей функции
-  insertInDisplay(btnValue);
-}
-//вызов знанчения
-document.querySelectorAll(".btn").addEventListener('click', function (event) {
-  adValueToButton(event);
-}
-
-
-
-
-// document.querySelector("button").addEventListener('click', function (event) {
-//   btnText = document.querySelector("button").value;
-//   insertInDisplay(btnText);
-// })
-
 
 //набор клавиатурой
 document.addEventListener("keydown", function (event) {
