@@ -113,10 +113,19 @@ function outputResults() {
 //функция извлечения квадратного корня
 function squareRoot() {
   let elem = IN_DISPLAY.textContent.replace(/√/, "");
-  IN_DISPLAY.textContent = Math.sqrt(elem);
-  IN_OPERATION_LIST.innerHTML += `${calculationNote} = ${Math.sqrt(elem)}` + `<br/>`;
-  getStorageResults();
+  if (IN_DISPLAY.textContent.match(/[\*\-\+\.\/]/)) {
+    let arr = [];
+    arr = IN_DISPLAY.textContent.split(/[\*\-\+\.\/]/);
+    for (var i = 0; i < arr.length; i++) {
+      IN_DISPLAY.textContent.replace(/√/, "") = Math.sqrt(i);
+    }
+    //ДОДЕЛАТЬ
 
+  } else {
+    IN_DISPLAY.textContent = Math.sqrt(elem);
+    IN_OPERATION_LIST.innerHTML += `${calculationNote} = ${Math.sqrt(elem)}` + `<br/>`;
+    getStorageResults();
+  }
 }
 
 //основные математические операции
