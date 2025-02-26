@@ -13,9 +13,15 @@ let inStorageArray = JSON.parse(localStorage.getItem("equation")) || [];
 // отображение в дисплее
 function insertInDisplay(num) {
   //отображение знака корня
-  if (num === '№') {
-    if (!IN_DISPLAY.textContent.match('\u221A')) {
-      IN_DISPLAY.textContent += num.replace(/№/g, '\u221A');
+  if (num === '√') {
+    const textInDisplay = IN_DISPLAY.textContent;
+    const lastSymbol = textInDisplay[textInDisplay.length - 1];
+    const checkLastSymbol = /[\+\-\*\/]/.test(lastSymbol) || !textInDisplay;
+
+    if (textInDisplay.match(/[0-9]/) && !checkLastSymbol) {
+      squareRoot();
+    } else if (checkLastSymbol) {
+      IN_DISPLAY.textContent += '√';
     }
   }
   // ограничение введения более одного символа подряд
@@ -69,14 +75,15 @@ let btnValue;
 
 //набор клавиатурой
 document.addEventListener("keydown", function (event) {
-  if ((event.key).match(/[0-9\*\-\+\.\/]/)) {
-    insertInDisplay(event.key);
+  let key = event.key;
+  if (key.match(/[0-9\*\-\+\.\/]/)) {
+    insertInDisplay(key);
   }
-  else if (IN_DISPLAY.textContent && (event.key).match(/Enter/)) {
+  else if (IN_DISPLAY.textContent && key === 'Enter') {
     result = eval(IN_DISPLAY.textContent);
     outputResults();
   }
-  else if ((event.key).match(/Delete/)) {
+  else if (key === 'Delete') {
     IN_DISPLAY.textContent = "";
   }
 })
@@ -103,6 +110,21 @@ function outputResults() {
   getStorageResults();
 }
 
+//функция извлечения квадратного корня
+function squareRoot() {
+  let elem = IN_DISPLAY.textContent.replace(/√/, "");
+  IN_DISPLAY.textContent = Math.sqrt(elem);
+  IN_OPERATION_LIST.innerHTML += `${calculationNote} = ${Math.sqrt(elem)}` + `<br/>`;
+  getStorageResults();
+
+}
+
+//основные математические операции
+function basicMathOperations() {
+  result = eval(IN_DISPLAY.textContent);
+  outputResults();
+}
+
 
 //математические операции при нажатии на кнопку "="
 document.querySelector("#btn-result").addEventListener("click", function (event) {
@@ -114,16 +136,12 @@ document.querySelector("#btn-result").addEventListener("click", function (event)
     getStorageResults();
   }
   //квадратный корень
-  else if (IN_DISPLAY.textContent.includes('\u221A')) {
-    let elem = IN_DISPLAY.textContent.replace(/\u221A/, "");
-    IN_DISPLAY.textContent = Math.sqrt(elem);
-    IN_OPERATION_LIST.innerHTML += `${calculationNote} = ${Math.sqrt(elem)}` + `<br/>`;
-    getStorageResults();
+  else if (IN_DISPLAY.textContent.includes('√')) {
+    squareRoot();
   }
   //основные операции
   else {
-    result = eval(IN_DISPLAY.textContent);
-    outputResults();
+    basicMathOperations();
   }
 })
 

@@ -1,3 +1,10 @@
+$background: rgb(209, 207, 208);
+
+@mixin button400 {
+  width: 55px;
+  height: 40px;
+}
+
 body, * {
   margin: 0;
   padding: 0;
@@ -19,7 +26,7 @@ body, * {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  background-color: rgb(209, 207, 208);
+  background-color: $background;
 
   .calculator__display {
     height: 100px;
@@ -155,10 +162,10 @@ body, * {
   word-wrap: break-word;
   color: rgb(110, 102, 99);
   font-size: 20px;
-  background-color: rgb(209, 207, 208);
+  background-color: $background;
 
     &::-webkit-scrollbar {
-      background-color: rgb(209, 207, 208);
+      background-color: $background;
   }
     &::-webkit-scrollbar-thumb {
       background-color: rgb(110, 102, 99);
@@ -178,22 +185,19 @@ body, * {
 
 @media only screen and (max-width: 400px) {
   .calculator button {
-    width: 55px;
-    height: 40px;
+    @include button400;
 
     &.btn {
       background: radial-gradient(7em 3em at top, rgb(110, 102, 99) 60%, rgb(58, 56, 59) 60%);
     }
 
     &.res-delete {
-      width: 55px;
-      height: 40px;
+      @include button400;
     }
   }
 
   button#btn-result {
-    width: 55px;
-    height: 40px;
+    @include button400;
   }
 }
 
