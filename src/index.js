@@ -19,7 +19,7 @@ function insertInDisplay(num) {
     const checkLastSymbol = /[\+\-\*\/]/.test(lastSymbol) || !textInDisplay;
 
     if (textInDisplay.match(/[0-9]/) && !checkLastSymbol) {
-      squareRoot();
+      oneNumSquareRoot();
     } else if (checkLastSymbol) {
       IN_DISPLAY.textContent += '√';
     }
@@ -112,20 +112,32 @@ function outputResults() {
 
 //функция извлечения квадратного корня
 function squareRoot() {
-  let elem = IN_DISPLAY.textContent.replace(/√/, "");
-  if (IN_DISPLAY.textContent.match(/[\*\-\+\.\/]/)) {
-    let arr = [];
-    arr = IN_DISPLAY.textContent.split(/[\*\-\+\.\/]/);
-    for (var i = 0; i < arr.length; i++) {
-      IN_DISPLAY.textContent.replace(/√/, "") = Math.sqrt(i);
-    }
-    //ДОДЕЛАТЬ
+  let express = IN_DISPLAY.textContent;
+  let parts = express.match(/[0-9.]+|√[0-9.]+|[*\-\+\/]/g);
 
-  } else {
-    IN_DISPLAY.textContent = Math.sqrt(elem);
-    IN_OPERATION_LIST.innerHTML += `${calculationNote} = ${Math.sqrt(elem)}` + `<br/>`;
-    getStorageResults();
-  }
+  let expressArr = [];
+
+  for (let part of parts) {
+    if (part.includes('√')) {
+      let num = part.replace(/√/, "");
+      let rootResult = Math.sqrt(parseFloat(num));
+      expressArr.push(rootResult.toString());
+    } else {
+      expressArr.push(part);
+    }
+    }
+  let finalExpress = expressArr.join('');
+  let finalResult = eval(finalExpress);
+  IN_DISPLAY.textContent = finalResult.toString();
+  getStorageResults(finalResult); //не добавляет результат
+}
+
+//функция извлечения квадратного корня при нажатии знака после ввода числа
+function oneNumSquareRoot() {
+  let elem = IN_DISPLAY.textContent.replace(/√/, "");
+  IN_DISPLAY.textContent = Math.sqrt(elem);
+  IN_OPERATION_LIST.innerHTML += `${calculationNote} = ${Math.sqrt(elem)}` + `<br/>`;
+  getStorageResults();
 }
 
 //основные математические операции
