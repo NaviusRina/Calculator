@@ -128,8 +128,8 @@ function squareRoot() {
     }
   let finalExpress = expressArr.join('');
   let finalResult = eval(finalExpress);
-  IN_DISPLAY.textContent = finalResult.toString();
-  getStorageResults(finalResult); //не добавляет результат
+  result = finalResult.toString();
+
 }
 
 //функция извлечения квадратного корня при нажатии знака после ввода числа
@@ -137,7 +137,6 @@ function oneNumSquareRoot() {
   let elem = IN_DISPLAY.textContent.replace(/√/, "");
   IN_DISPLAY.textContent = Math.sqrt(elem);
   IN_OPERATION_LIST.innerHTML += `${calculationNote} = ${Math.sqrt(elem)}` + `<br/>`;
-  getStorageResults();
 }
 
 //основные математические операции
@@ -159,6 +158,7 @@ document.querySelector("#btn-result").addEventListener("click", function (event)
   //квадратный корень
   else if (IN_DISPLAY.textContent.includes('√')) {
     squareRoot();
+    outputResults();
   }
   //основные операции
   else {
